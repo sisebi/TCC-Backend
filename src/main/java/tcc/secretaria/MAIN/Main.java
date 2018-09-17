@@ -18,7 +18,6 @@ import tcc.secretaria.DATA.AdminDATA;
 import tcc.secretaria.DATA.AlunoDATA;
 import tcc.secretaria.DATA.ConteudoDATA;
 import tcc.secretaria.DATA.CursoDATA;
-import tcc.secretaria.DATA.Curso_Diciplinas;
 import tcc.secretaria.DATA.DiciplinaDATA;
 import tcc.secretaria.DATA.MatriculaDATA;
 import tcc.secretaria.DATA.PessoaDATA;
@@ -40,7 +39,7 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-          addDiciplina();
+          addConteudo();
           
             System.out.println("DEU CERTO ESTÁ MERDA :");
         } catch (Exception e) {
@@ -48,11 +47,23 @@ public class Main {
         }
     }
     
+    public static void addConteudo(){
+        DiciplinaDAO ddao = new DiciplinaDAO();
+        DiciplinaDATA d = ddao.buscaID(2);
+        d.getConteudos().add(em.find(ConteudoDATA.class, 1));
+        d.getConteudos().add(em.find(ConteudoDATA.class, 3));
+        d.getConteudos().add(em.find(ConteudoDATA.class, 5));
+        d.getConteudos().add(em.find(ConteudoDATA.class, 7));
+        ddao.inserir(d);
+    }
+    
     public static void addDiciplina(){       
-        CursoDATA c = em.find(CursoDATA.class, 7);
-        DiciplinaDATA d = em.find(DiciplinaDATA.class, 1);
+        CursoDATA c = em.find(CursoDATA.class, 8);
+//        DiciplinaDATA d = em.find(DiciplinaDATA.class, 3);
+        c.getDiciplinas().add(em.find(DiciplinaDATA.class, 1));
+        c.getDiciplinas().add(em.find(DiciplinaDATA.class, 3));
+        c.getDiciplinas().add(em.find(DiciplinaDATA.class, 4));
         
-        c.getDiciplinas().add(d);
         em.getTransaction().begin();
         em.persist(c);
         em.getTransaction().commit();
@@ -123,8 +134,8 @@ public class Main {
         DiciplinaDAO ddao = new DiciplinaDAO();
         DiciplinaDATA ddata = new DiciplinaDATA();
         
-        ddata.setNome("Informatica");
-        ddata.setDescricao("Conceitos de Informatica");
+        ddata.setNome("Matematica");
+        ddata.setDescricao("Calculos Matematicos");
         ddao.inserir(ddata);
     }
 
@@ -154,6 +165,38 @@ public class Main {
         c.setCategoria(CategoriaENUM.VIDEO);
         c.setLink("https://www.google.com.br/search?q");
         cdao.inserir(c);
+        
+        ConteudoDAO cdao1 = new ConteudoDAO();
+        ConteudoDATA c1 = new ConteudoDATA();
+        c1.setTitulo("AngulatJS javaScript");
+        c1.setDescricao("Criação de Web com linguagem Angular");
+        c1.setCategoria(CategoriaENUM.PDF);
+        c1.setLink("https://www.google.com.br/search?q");
+        cdao1.inserir(c1);
+        
+        ConteudoDAO cdao2 = new ConteudoDAO();
+        ConteudoDATA c2 = new ConteudoDATA();
+        c2.setTitulo("JSF com banco de dados");
+        c2.setDescricao("Criação de Web com linguagem JSF");
+        c2.setCategoria(CategoriaENUM.OFICCE);
+        c2.setLink("https://www.google.com.br/search?q");
+        cdao2.inserir(c2);
+        
+        ConteudoDAO cdao3 = new ConteudoDAO();
+        ConteudoDATA c3 = new ConteudoDATA();
+        c3.setTitulo("JSP com banco de dados");
+        c3.setDescricao("Criação de Web com linguagem JSP");
+        c3.setCategoria(CategoriaENUM.VIDEO);
+        c3.setLink("https://www.google.com.br/search?q");
+        cdao3.inserir(c3);
+        
+        ConteudoDAO cdao4 = new ConteudoDAO();
+        ConteudoDATA c4 = new ConteudoDATA();
+        c4.setTitulo("AspNet com banco de dados");
+        c4.setDescricao("Criação de Web com linguagem AspNet");
+        c4.setCategoria(CategoriaENUM.VIDEO);
+        c4.setLink("https://www.google.com.br/search?q");
+        cdao4.inserir(c4);
     }
 
     public static void conectar() {
