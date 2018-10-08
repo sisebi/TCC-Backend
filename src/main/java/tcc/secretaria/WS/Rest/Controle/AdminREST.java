@@ -1,5 +1,5 @@
 
-package tcc.sercretaria.WS.Rest.Controle;
+package tcc.secretaria.WS.Rest.Controle;
 
 import java.util.List;
 import javax.ws.rs.Consumes;
@@ -11,43 +11,44 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import tcc.secretaria.DAO.SecretariaDAO;
-import tcc.secretaria.DATA.SecretariaDATA;
+import tcc.secretaria.DAO.AdminDAO;
+import tcc.secretaria.DATA.AdminDATA;
 import tcc.secretaria.UTIL.ErroWEB;
 
-@Path("/sec")
-public class SecretariaREST {
-    private final SecretariaDAO sdao = new SecretariaDAO();
+@Path("/adm")
+public class AdminREST {
+    
+    private final AdminDAO adm = new AdminDAO();
     
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/")
-    public List<SecretariaDATA> lista(){
-        return this.sdao.lista();
+    public List<AdminDATA> lista() {
+        return this.adm.lista();
     }
     
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}")
-    public SecretariaDATA buscaID(@PathParam("id")Integer codigo){
-        return this.sdao.buscaID(codigo);
+    public AdminDATA buscaID(@PathParam("id")Integer codigo){
+        return this.adm.buscaID(codigo);
     }
     
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{usr}/{sh}")
-    public SecretariaDATA validarSenha(@PathParam("usr")String usr,
+    public AdminDATA validarSenha(@PathParam("usr")String usr,
             @PathParam("sh")String sh){
-        return this.sdao.validarSenha(usr, sh);
+        return this.adm.validarSenha(usr, sh);
     }
     
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/")
-    public String inserir(SecretariaDATA sdata){
+    public String inserir(AdminDATA adata){
         try {
-            this.sdao.inserir(sdata);
-            return "Inserido com sucesso!";
+            this.adm.inserir(adata);
+            return "Inserido com sucesso !";
         } catch (Exception e) {
             throw new ErroWEB("Erro ao inserir.");
         }
@@ -56,10 +57,10 @@ public class SecretariaREST {
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/")
-    public String salvar(SecretariaDATA sdata){
+    public String salvar(AdminDATA adata){
         try {
-            this.sdao.salvar(sdata);
-            return "Salvo com sucesso!";
+            this.adm.salvar(adata);
+            return "Salvo com sucesso !";
         } catch (Exception e) {
             throw new ErroWEB("Erro ao salvar.");
         }
@@ -69,7 +70,7 @@ public class SecretariaREST {
     @Path("/{id}")
     public String deletar(@PathParam("id")Integer codigo){
         try {
-            this.sdao.deletar(codigo);
+            this.adm.deletar(codigo);
             return "Deletado com sucesso!";
         } catch (Exception e) {
             throw new ErroWEB("Erro ao deletar.");

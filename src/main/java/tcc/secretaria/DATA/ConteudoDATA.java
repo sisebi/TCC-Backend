@@ -4,7 +4,7 @@ package tcc.secretaria.DATA;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.*;
-import tcc.sercretaria.ENUM.CategoriaENUM;
+import tcc.secretaria.ENUM.CategoriaENUM;
 
 @Entity
 @Table(name = "tb_conteudo")

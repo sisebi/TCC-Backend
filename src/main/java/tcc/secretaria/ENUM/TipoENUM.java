@@ -1,5 +1,5 @@
 
-package tcc.sercretaria.ENUM;
+package tcc.secretaria.ENUM;
 
 
 public enum TipoENUM {

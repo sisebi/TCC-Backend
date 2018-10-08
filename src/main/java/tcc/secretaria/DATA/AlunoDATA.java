@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
-import tcc.sercretaria.ENUM.TipoENUM;
+import tcc.secretaria.ENUM.TipoENUM;
 
 @Entity
 @Table(name = "tb_aluno")

@@ -1,5 +1,4 @@
-
-package tcc.sercretaria.WS.Rest.Controle;
+package tcc.secretaria.WS.Rest.Controle;
 
 import java.util.List;
 import java.util.logging.Level;
@@ -15,56 +14,57 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import tcc.secretaria.DAO.DiciplinaDAO;
-import tcc.secretaria.DATA.DiciplinaDATA;
+import tcc.secretaria.DAO.ConteudoDAO;
+import tcc.secretaria.DATA.ConteudoDATA;
 
-@Path("/diciplina")
-public class DiciplinaREST {
-    private final DiciplinaDAO cdao = new DiciplinaDAO();
-    
+@Path("/conteudo")
+public class ConteudoREST {
+
+    private final ConteudoDAO cdao = new ConteudoDAO();
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/")
-    public List<DiciplinaDATA> lista() {
+    public List<ConteudoDATA> lista() {
         try {
             return this.cdao.lista();
         } catch (Exception e) {
-            Logger.getLogger(DiciplinaDATA.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(ConteudoDATA.class.getName()).log(Level.SEVERE, null, e);
             throw new WebApplicationException(Response.Status.INTERNAL_SERVER_ERROR);
         }
     }
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}")
-    public DiciplinaDATA getConteudo(@PathParam("id")Integer codigo) {
+    public ConteudoDATA getConteudo(@PathParam("id")Integer codigo) {
         try {
             return this.cdao.buscaID(codigo);
         } catch (Exception e) {
-            Logger.getLogger(DiciplinaDATA.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(ConteudoDATA.class.getName()).log(Level.SEVERE, null, e);
             throw new WebApplicationException(Response.Status.INTERNAL_SERVER_ERROR);
         }
     }
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/")
-    public Response inserir(DiciplinaDATA cdata) {
+    public Response inserir(ConteudoDATA cdata) {
         try {
             this.cdao.inserir(cdata);
             return Response.status(Response.Status.OK).build();
         } catch (Exception e) {
-            Logger.getLogger(DiciplinaDATA.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(ConteudoDATA.class.getName()).log(Level.SEVERE, null, e);
             throw new WebApplicationException(Response.Status.INTERNAL_SERVER_ERROR);
         }
     }
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/")
-    public Response salvar(DiciplinaDATA cdata) {
+    public Response salvar(ConteudoDATA cdata) {
         try {
             this.cdao.salvar(cdata);
             return Response.status(Response.Status.OK).build();
         } catch (Exception e) {
-            Logger.getLogger(DiciplinaDATA.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(ConteudoDATA.class.getName()).log(Level.SEVERE, null, e);
             throw new WebApplicationException(Response.Status.INTERNAL_SERVER_ERROR);
         }
     }
@@ -75,9 +75,9 @@ public class DiciplinaREST {
             this.cdao.deletar(codigo);
             return Response.status(Response.Status.OK).build();            
         } catch (Exception e) {
-            Logger.getLogger(DiciplinaDATA.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(ConteudoDATA.class.getName()).log(Level.SEVERE, null, e);
             throw new WebApplicationException(Response.Status.INTERNAL_SERVER_ERROR);
         }
     }
-    
+
 }

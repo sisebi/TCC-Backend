@@ -9,7 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import tcc.sercretaria.ENUM.TipoENUM;
+import tcc.secretaria.ENUM.TipoENUM;
 
 @Entity
 @Table(name = "tb_secretaria")

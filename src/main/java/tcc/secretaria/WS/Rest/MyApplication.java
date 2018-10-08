@@ -1,5 +1,5 @@
 
-package tcc.sercretaria.WS.Rest;
+package tcc.secretaria.WS.Rest;
 
 import javax.ws.rs.ApplicationPath;
 import org.glassfish.jersey.server.ResourceConfig;

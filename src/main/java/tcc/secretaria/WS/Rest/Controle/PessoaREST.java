@@ -1,4 +1,4 @@
-package tcc.sercretaria.WS.Rest.Controle;
+package tcc.secretaria.WS.Rest.Controle;
 
 import java.util.List;
 import java.util.logging.Level;
