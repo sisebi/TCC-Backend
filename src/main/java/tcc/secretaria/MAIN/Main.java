@@ -27,6 +27,11 @@ import tcc.secretaria.DATA.UsuarioDATA;
 import tcc.secretaria.UTIL.ErroSistema;
 import tcc.sercretaria.ENUM.CategoriaENUM;
 import tcc.sercretaria.ENUM.TipoENUM;
+import javax.crypto.spec.SecretKeySpec;
+import javax.xml.bind.DatatypeConverter;
+import java.security.Key;
+import io.jsonwebtoken.*;
+import java.util.Date;
 
 public class Main {
 
@@ -39,15 +44,16 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-          addConteudo();
-          
+            addConteudo();
+
             System.out.println("DEU CERTO ESTÁ MERDA :");
         } catch (Exception e) {
             System.out.println("ERRO DO CARALHO : " + e);
         }
     }
-    
-    public static void addConteudo(){
+   
+
+    public static void addConteudo() {
         DiciplinaDAO ddao = new DiciplinaDAO();
         DiciplinaDATA d = ddao.buscaID(2);
         d.getConteudos().add(em.find(ConteudoDATA.class, 1));
@@ -56,14 +62,14 @@ public class Main {
         d.getConteudos().add(em.find(ConteudoDATA.class, 7));
         ddao.inserir(d);
     }
-    
-    public static void addDiciplina(){       
+
+    public static void addDiciplina() {
         CursoDATA c = em.find(CursoDATA.class, 8);
 //        DiciplinaDATA d = em.find(DiciplinaDATA.class, 3);
         c.getDiciplinas().add(em.find(DiciplinaDATA.class, 1));
         c.getDiciplinas().add(em.find(DiciplinaDATA.class, 3));
         c.getDiciplinas().add(em.find(DiciplinaDATA.class, 4));
-        
+
         em.getTransaction().begin();
         em.persist(c);
         em.getTransaction().commit();
@@ -90,23 +96,25 @@ public class Main {
 
         adao.inserir(a);
     }
-    public static void criarAdmin(){
+
+    public static void criarAdmin() {
         AdminDAO pdao = new AdminDAO();
         AdminDATA p = new AdminDATA();
         p.setAtivo(Boolean.TRUE);
         p.setSenha("123");
         p.setPessoa(em.find(PessoaDATA.class, 4));
         pdao.inserir(p);
-        
+
     }
-    public static void criarSecretaria(){
+
+    public static void criarSecretaria() {
         SecretariaDAO pdao = new SecretariaDAO();
         SecretariaDATA p = new SecretariaDATA();
         p.setAtivo(Boolean.TRUE);
         p.setSenha("123");
         p.setPessoa(em.find(PessoaDATA.class, 2));
         pdao.inserir(p);
-        
+
     }
 
     public static void salvarAluno(Integer codigo) {
@@ -125,15 +133,15 @@ public class Main {
         m.setAno(2018);
         m.setAluno(em.find(AlunoDATA.class, 2));
         m.setCurso(em.find(CursoDATA.class, 2));
-        
+
         mdao.inserir(m);
-        
+
     }
-    
-    public static void criarDiciplina(){
+
+    public static void criarDiciplina() {
         DiciplinaDAO ddao = new DiciplinaDAO();
         DiciplinaDATA ddata = new DiciplinaDATA();
-        
+
         ddata.setNome("Matematica");
         ddata.setDescricao("Calculos Matematicos");
         ddao.inserir(ddata);
@@ -165,7 +173,7 @@ public class Main {
         c.setCategoria(CategoriaENUM.VIDEO);
         c.setLink("https://www.google.com.br/search?q");
         cdao.inserir(c);
-        
+
         ConteudoDAO cdao1 = new ConteudoDAO();
         ConteudoDATA c1 = new ConteudoDATA();
         c1.setTitulo("AngulatJS javaScript");
@@ -173,7 +181,7 @@ public class Main {
         c1.setCategoria(CategoriaENUM.PDF);
         c1.setLink("https://www.google.com.br/search?q");
         cdao1.inserir(c1);
-        
+
         ConteudoDAO cdao2 = new ConteudoDAO();
         ConteudoDATA c2 = new ConteudoDATA();
         c2.setTitulo("JSF com banco de dados");
@@ -181,7 +189,7 @@ public class Main {
         c2.setCategoria(CategoriaENUM.OFICCE);
         c2.setLink("https://www.google.com.br/search?q");
         cdao2.inserir(c2);
-        
+
         ConteudoDAO cdao3 = new ConteudoDAO();
         ConteudoDATA c3 = new ConteudoDATA();
         c3.setTitulo("JSP com banco de dados");
@@ -189,7 +197,7 @@ public class Main {
         c3.setCategoria(CategoriaENUM.VIDEO);
         c3.setLink("https://www.google.com.br/search?q");
         cdao3.inserir(c3);
-        
+
         ConteudoDAO cdao4 = new ConteudoDAO();
         ConteudoDATA c4 = new ConteudoDATA();
         c4.setTitulo("AspNet com banco de dados");
