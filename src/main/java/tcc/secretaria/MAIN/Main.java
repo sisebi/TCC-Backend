@@ -43,10 +43,14 @@ public class Main {
 
     public static void main(String[] args) {
         try {
+
 //            addConteudo();
             conectar();
 
-            System.out.println("DEU CERTO EST√Å MERDA :");
+            addConteudo();
+
+
+            System.out.println("DEU CERTO EST√? MERDA :");
         } catch (Exception e) {
             System.out.println("ERRO DO CARALHO : " + e);
         }
