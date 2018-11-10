@@ -42,18 +42,18 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        try {
-
+//        try {
+//
+////            addConteudo();
+//            conectar();
+//
 //            addConteudo();
-            conectar();
-
-            addConteudo();
-
-
-            System.out.println("DEU CERTO ESTÃ? MERDA :");
-        } catch (Exception e) {
-            System.out.println("ERRO DO CARALHO : " + e);
-        }
+//
+//
+//            System.out.println("DEU CERTO ESTï¿½? MERDA :");
+//        } catch (Exception e) {
+//            System.out.println("ERRO DO CARALHO : " + e);
+//        }
     }
    
 
